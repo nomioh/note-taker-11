@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const database = require("./db/db");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,10 +15,12 @@ app.get("/", (req, res) => {
 });
 
 // get and listen to notes.html
-
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(dirname, "./public/notes.html"));
 });
+
+// reads db file > returns saved notes as json
+app.post("/api/notes");
 
 // starts server
 app.listen(PORT, () => {
