@@ -4,7 +4,7 @@ const path = require("path");
 const database = require("./db/db");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3088;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,12 +16,13 @@ async function readFile() {
 }
 // Getand listen to index.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(dirname, "./public/index.html"));
+  //   res.json({ data: "hello world" }).status(200);
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // get and listen to notes.html
 app.get("/notes", (req, res) => {
-  res.sendFile(path.join(dirname, "./public/notes.html"));
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 // reads db file > returns saved notes as json
@@ -77,7 +78,12 @@ app.delete("/api/notes/:id", function (req, res) {
   });
   res.json(database);
 });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
 // starts server
 app.listen(PORT, () => {
-  console.log("API server now on port 3000!" + PORT);
+  console.log("API server now on port 3088!" + PORT);
 });
