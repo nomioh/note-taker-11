@@ -4,7 +4,7 @@ const path = require("path");
 const database = require("./db/db");
 
 const app = express();
-const PORT = 3088;
+const PORT = 80;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -85,5 +85,5 @@ app.get("*", (req, res) => {
 
 // starts server
 app.listen(PORT, () => {
-  console.log("API server now on port 3088!" + PORT);
+  console.log(`API server now on port ${PORT}...`);
 });
