@@ -2,9 +2,10 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const database = require("./db/db");
+require("dotenv").config();
 
 const app = express();
-const PORT = 80;
+const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -84,6 +85,6 @@ app.get("*", (req, res) => {
 });
 
 // starts server
-app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}...`);
+app.listen(port, () => {
+  console.log(`API server now on port ${port}...`);
 });
